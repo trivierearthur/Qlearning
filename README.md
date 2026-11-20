@@ -14,18 +14,20 @@ On every run, the script generates a brand-new, guaranteed-solvable 4x4 `FrozenL
 ## How It Works
 
 ### 1. The Q-Table (State-Action Memory)
-The agent maintains a 2D lookup table (`16 states × 4 actions`: `LEFT`, `DOWN`, `RIGHT`, `UP`) initialized to zeros. Each cell $Q(s, a)$ represents the expected cumulative future reward of taking action $a$ in state $s$.
+The agent maintains a 2D lookup table (`16 states × 4 actions`: `LEFT`, `DOWN`, `RIGHT`, `UP`) initialized to zeros. Each cell `Q(s, a)` represents the expected cumulative future reward of taking action `a` in state `s`.
 
 ### 2. Temporal Difference Learning & The Bellman Equation
 Rather than waiting until the end of an episode to learn, the agent updates its Q-table at every step using the **Bellman optimality equation**:
 
-$$Q(s, a) \leftarrow Q(s, a) + \alpha \Big[ R + \gamma \max_{a'} Q(s', a') - Q(s, a) \Big]$$
+```text
+Q(s, a) ← Q(s, a) + α * [ R + γ * max(Q(s', a')) - Q(s, a) ]
+```
 
-* **Maximizing Future Rewards:** By combining the immediate reward ($R$) with the discounted maximum value of the next state ($\gamma \max_{a'} Q(s', a')$), rewards propagate backward from the goal (`+1.0`) to the starting tile.
-* **Temporal Difference (TD) Error:** The term $\big[R + \gamma \max_{a'} Q(s', a') - Q(s, a)\big]$ measures the surprise between the agent's previous estimate and the newly observed outcome.
+* **Maximizing Future Rewards:** By combining the immediate reward (`R`) with the discounted maximum value of the next state (`γ * max(Q(s', a'))`), rewards propagate backward from the goal (`+1.0`) to the starting tile.
+* **Temporal Difference (TD) Error:** The term `R + γ * max(Q(s', a')) - Q(s, a)` measures the difference between the agent's previous estimate and the newly observed outcome.
 
 ### 3. Epsilon-Greedy Exploration
-To balance discovering new paths (**exploration**) with using known good paths (**exploitation**), the agent starts with $\epsilon = 1.0$ (100% random moves) and decays $\epsilon$ by `0.999` after every episode down to `0.01`.
+To balance discovering new paths (**exploration**) with using known good paths (**exploitation**), the agent starts with `ε = 1.0` (100% random moves) and decays `ε` by `0.999` after every episode down to `0.01`.
 
 ---
 
