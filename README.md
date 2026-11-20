@@ -2,9 +2,6 @@
 
 Fun RL (Temporal Difference learning) agent using Q-value matrix updates (Bellman equation) to navigate out of randomized FrozenLake mazes.
 
-![Python](https://shields.io)
-![NumPy](https://shields.io)
-![Gymnasium](https://shields.io)
 
 ## Overview
 
