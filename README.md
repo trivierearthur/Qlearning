@@ -1,2 +1,2 @@
-# Qlearning
-q-learning-from-scratch, fun agent using Qvalues matrix update to find the way out of the maze
+# Qlearning-from-scratch
+Fun RL-(Temporal Difference learning) agent using Q-value matrix updates (Bellman equation) to navigate out of randomized FrozenLake mazes.
